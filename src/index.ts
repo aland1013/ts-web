@@ -1,7 +1,16 @@
 import { User } from './models/User';
 
 const user = new User({ name: 'abl', age: 20 });
-user.set({ name: 'pcl' });
+user.on('change', () => {
+  console.log('fired');
+});
 
-console.log(user.get('name'));
-console.log(user.get('age'));
+user.on('change', () => {
+  console.log('fired2');
+});
+
+user.on('save', () => {
+  console.log('save triggered');
+});
+
+user.trigger('adsfdd');
